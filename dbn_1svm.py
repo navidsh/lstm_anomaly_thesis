@@ -52,10 +52,10 @@ def train_autoencoder(X_train,Y_train):
     # Launch the graph
     with tf.Session() as sess:
         sess.run(init)
-        print ("number of examples: %d" % (len(X_train)))
-        print (" batch size: %d" % (batch_size))
+        print(("number of examples: %d" % (len(X_train))))
+        print((" batch size: %d" % (batch_size)))
         n_batches = int(len(X_train) / batch_size)
-        print ("num batches: %d" % (n_batches))
+        print(("num batches: %d" % (n_batches)))
 
         for epoch in range(n_epochs):
             # Loop over all batches
@@ -64,8 +64,8 @@ def train_autoencoder(X_train,Y_train):
                 _, c = sess.run([ae.optimizer,ae.loss], feed_dict={ae.input_placeholder: Xi})
             # Display logs per epoch step
             if epoch % display_step == 0:
-                print("Epoch:", '%02d' % (epoch + 1),
-                      "cost=", "{:.9f}".format(c))
+                print(("Epoch:", '%02d' % (epoch + 1),
+                      "cost=", "{:.9f}".format(c)))
 
         print("Optimization Finished!")
 
@@ -79,8 +79,8 @@ def detect_anomalies():
 
     encoded_X_train = np.load("resources/files/encoded_X_train.npy")
     encoded_X_test = np.load("resources/files/encoded_X_test.npy")
-    print(encoded_X_train.shape)
-    print(encoded_X_test.shape)
+    print((encoded_X_train.shape))
+    print((encoded_X_test.shape))
 
     clf = svm.OneClassSVM(nu=0.1, kernel="linear")
     clf.fit(encoded_X_train)
@@ -97,14 +97,14 @@ def detect_anomalies():
     # print(n_normal_points_test.shape)
     # print(n_anomalies_test.shape)
 
-    print("Train Accuracy: %f"%(accuracy_score(Y_train, y_pred_train)))
-    print("Test Accuracy: %f"%( accuracy_score(Y_test, y_pred_test)))
-    print("Precision: %f" % (precision_score(Y_test, y_pred_test,pos_label=1)))
+    print(("Train Accuracy: %f"%(accuracy_score(Y_train, y_pred_train))))
+    print(("Test Accuracy: %f"%( accuracy_score(Y_test, y_pred_test))))
+    print(("Precision: %f" % (precision_score(Y_test, y_pred_test,pos_label=1))))
     #print("Recall: %f" % (precision_score(Y_test, y_pred_test, pos_label=-1)))
-    print "Confusion Matrix: (Anomalies, Normal)"
-    print confusion_matrix(Y_test,y_pred_test,labels=[-1,1])
+    print("Confusion Matrix: (Anomalies, Normal)")
+    print(confusion_matrix(Y_test,y_pred_test,labels=[-1,1]))
     fpr, tpr, thresholds = metrics.roc_curve(Y_test, y_pred_test, pos_label=1)
-    print "AUC: %f"%metrics.auc(fpr, tpr)
+    print("AUC: %f"%metrics.auc(fpr, tpr))
 
 if __name__ == "__main__":
     X_train, Y_train, X_test, Y_test = create_anomaly_dataset()

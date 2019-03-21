@@ -31,7 +31,7 @@ def get_activations(model, model_inputs, print_shape_only=False, layer_name=None
     for layer_activations in layer_outputs:
         activations.append(layer_activations)
         if print_shape_only:
-            print(layer_activations.shape)
+            print((layer_activations.shape))
         else:
             print(layer_activations)
     return activations
@@ -49,14 +49,14 @@ if __name__ == '__main__':
         checkpoints = natsorted(checkpoints)
         assert len(checkpoints) != 0, 'No checkpoints found.'
         checkpoint_file = checkpoints[-1]
-        print('Loading [{}]'.format(checkpoint_file))
+        print(('Loading [{}]'.format(checkpoint_file)))
         model = load_model(checkpoint_file)
 
         model.compile(optimizer='adam',
                       loss='mse ',
                       metrics=['accuracy'])
 
-        print(model.summary())
+        print((model.summary()))
 
 
         get_activations(model, x_test[0:1], print_shape_only=True)  # with just one sample.

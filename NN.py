@@ -18,7 +18,7 @@ import configuration.config as cfg
 import matplotlib
 
 if cfg.run_config['Xserver'] == False:
-    print "No X-server"
+    print("No X-server")
     matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
@@ -67,7 +67,7 @@ def prepare_seq2seq_data(dataset, look_back, look_ahead):
 
     dataX = np.reshape(np.array(dataX),[-1,look_back])
     dataY = np.reshape(np.array(dataY),[-1,look_ahead])
-    print dataY.shape
+    print(dataY.shape)
     return dataX,dataY
 
 train = np.load(data_folder + "train.npy")
@@ -104,18 +104,18 @@ NN.fit(X_train, y_train, epochs=epochs, batch_size=batch_size,validation_data=(X
 train_predictions = NN.predict(X_train, batch_size=batch_size)
 train_predictions = train_scaler.inverse_transform(train_predictions)
 train_true = train_scaler.inverse_transform(y_train)
-print "Train Loss %f" % NN.evaluate(X_train,y_train,batch_size=batch_size,verbose=1)
+print("Train Loss %f" % NN.evaluate(X_train,y_train,batch_size=batch_size,verbose=1))
 
 
 v2_predictions = NN.predict(X_validation2, batch_size=batch_size)
 v2_predictions = train_scaler.inverse_transform(v2_predictions)
 v2_true = train_scaler.inverse_transform(y_validation2)
-print "V2 Loss %f" % NN.evaluate(X_validation2,y_validation2,batch_size=batch_size,verbose=1)
+print("V2 Loss %f" % NN.evaluate(X_validation2,y_validation2,batch_size=batch_size,verbose=1))
 
 test_predictions = NN.predict(X_test, batch_size=batch_size)
 test_predictions = train_scaler.inverse_transform(test_predictions)
 test_true = train_scaler.inverse_transform(y_test)
-print "Test loss %f" % NN.evaluate(X_test,y_test,batch_size=batch_size,verbose=1)
+print("Test loss %f" % NN.evaluate(X_test,y_test,batch_size=batch_size,verbose=1))
 
 plot_dimension = 0
 plt.xlabel("Time step")

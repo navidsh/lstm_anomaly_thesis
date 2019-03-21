@@ -1,7 +1,7 @@
 '''Example script showing how to use stateful RNNs
 to model long sequences efficiently.
 '''
-from __future__ import print_function
+
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.models import Sequential

@@ -77,4 +77,4 @@ def read_GAS_data():
     return X_train, X_test
 
 if __name__ == "__main__":
-    print read_GAS_data()
+    print(read_GAS_data())

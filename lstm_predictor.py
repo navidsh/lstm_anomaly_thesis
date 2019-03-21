@@ -17,7 +17,7 @@ import configuration.config as cfg
 import matplotlib
 
 if cfg.run_config['Xserver'] == False:
-    print "No X-server"
+    print("No X-server")
     matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
@@ -70,7 +70,7 @@ def make_plots(context,predictions_timesteps,true_values,look_ahead,title,path,s
 
 def get_predictions(context,model,X,y,train_scaler,batch_size,look_ahead,look_back,epochs,experiment_id):
     predictions = model.predict(X, batch_size=batch_size)
-    print predictions.shape
+    print(predictions.shape)
     predictions = train_scaler.inverse_transform(predictions)
     y = train_scaler.inverse_transform(y)
 
@@ -153,10 +153,10 @@ def run():
         util.save_figure("%s/%s/" % ("imgs", experiment_id), "train_errors", fig)
 
     validation2_loss = model.evaluate(X_validation2, y_validation2, batch_size=batch_size, verbose=2)
-    print "Validation2 Loss %s" % (validation2_loss)
+    print("Validation2 Loss %s" % (validation2_loss))
     logging.info("Validation2 Loss %s" % (validation2_loss))
     test_loss = model.evaluate(X_test, y_test, batch_size=batch_size, verbose=2)
-    print "Test Loss %s" % (test_loss)
+    print("Test Loss %s" % (test_loss))
     logging.info("Test Loss %s" % (test_loss))
 
     predictions_train, y_true_train = get_predictions("Train", model, X_train, y_train, train_scaler,
@@ -170,9 +170,9 @@ def run():
                                                                   epochs, experiment_id,
                                                                   )
     predictions_validation1_scaled = train_scaler.transform(predictions_validation1)
-    print "Calculated validation1 loss %f" % (mean_squared_error(
+    print("Calculated validation1 loss %f" % (mean_squared_error(
         np.reshape(y_validation1, [len(y_validation1), look_ahead]),
-        np.reshape(predictions_validation1_scaled, [len(predictions_validation1_scaled), look_ahead])))
+        np.reshape(predictions_validation1_scaled, [len(predictions_validation1_scaled), look_ahead]))))
     np.save(data_folder + "validation1_predictions", predictions_validation1)
     np.save(data_folder + "validation1_true", y_true_validation1)
     np.save(data_folder + "validation1_labels", validation2_labels)
@@ -182,9 +182,9 @@ def run():
                                                                   epochs, experiment_id,
                                                                  )
     predictions_validation2_scaled = train_scaler.transform(predictions_validation2)
-    print "Calculated validation2 loss %f"%(mean_squared_error(
+    print("Calculated validation2 loss %f"%(mean_squared_error(
         np.reshape(y_validation2, [len(y_validation2), look_ahead]),
-        np.reshape(predictions_validation2_scaled, [len(predictions_validation2_scaled), look_ahead])))
+        np.reshape(predictions_validation2_scaled, [len(predictions_validation2_scaled), look_ahead]))))
     np.save(data_folder + "validation2_predictions", predictions_validation2)
     np.save(data_folder + "validation2_true", y_true_validation2)
     np.save(data_folder + "validation2_labels", validation2_labels)
@@ -194,8 +194,8 @@ def run():
                                                     look_back, epochs, experiment_id,
                                                    )
     predictions_test_scaled = train_scaler.transform(predictions_test)
-    print "Calculated test loss %f" % (mean_squared_error( np.reshape(y_test, [len(y_test),look_ahead]),
-                                       np.reshape(predictions_test_scaled, [len(predictions_test_scaled),look_ahead])))
+    print("Calculated test loss %f" % (mean_squared_error( np.reshape(y_test, [len(y_test),look_ahead]),
+                                       np.reshape(predictions_test_scaled, [len(predictions_test_scaled),look_ahead]))))
 
     np.save(data_folder + "test_predictions", predictions_test)
     np.save(data_folder + "test_true", y_true_test)

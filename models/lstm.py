@@ -15,7 +15,7 @@ import os
 
 class ResetStatesCallback(Callback):
     def on_epoch_begin(self, epoch, logs={}):
-        print "Resetting states before epoch %d"%(epoch)
+        print("Resetting states before epoch %d"%(epoch))
         self.model.reset_states()
 
     # def on_batch_begin(self, batch, logs={}):
@@ -25,15 +25,15 @@ class ResetStatesCallback(Callback):
 
 class GetStatesCallback(Callback):
     def on_epoch_end(self, epoch, logs={}):
-        print "On epoch end. epoch number: %d" % (epoch)
+        print("On epoch end. epoch number: %d" % (epoch))
         states = [K.get_value(s) for s, _ in self.model.state_updates]
-        print states
+        print(states)
 
     def on_batch_end(self, batch, logs={}):
         #get sates
-        print "On batch end. batch number: %d"%(batch)
+        print("On batch end. batch number: %d"%(batch))
         states = [K.get_value(s) for s,_ in self.model.state_updates]
-        print states
+        print(states)
 
 
 class VanillaLSTM(object):
@@ -208,7 +208,7 @@ def train_stateful_model(model, x_train, y_train, batch_size, epochs, shuffle, v
     logging.info("Training Loss per epoch: %s" % str(history_callback.history["loss"]))
     if validation:
         logging.info("Validation  Loss per epoch: %s" % str(history_callback.history["val_loss"]))
-    print(history_callback.history.keys())
+    print((list(history_callback.history.keys())))
     return history_callback
     # for epoch in range(epochs):
     #     model.fit(x_train, y_train, batch_size=batch_size, epochs=1,shuffle=shuffle, verbose=2)
@@ -230,7 +230,7 @@ def train_model(model, x_train, y_train, batch_size, epochs, shuffle, validation
     logging.info("Training Loss per epoch: %s" % str(history_callback.history["loss"]))
     if validation:
         logging.info("Validation  Loss per epoch: %s" % str(history_callback.history["val_loss"]))
-    print(history_callback.history.keys())
+    print((list(history_callback.history.keys())))
     return history_callback
     # for epoch in range(epochs):
     #     model.fit(x_train, y_train, batch_size=batch_size, epochs=1,shuffle=shuffle, verbose=2)

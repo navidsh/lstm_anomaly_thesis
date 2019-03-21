@@ -13,7 +13,7 @@ def optimize(dropout,optimizer,batch_size):
     #      (5/math.pi)*x - 6) + 10*(1-(1./(8*math.pi)))*np.cos(x) + 10
     result = objective_function(dropout,optimizer,batch_size)
     result = float(result)
-    print 'Result = %f' % result
+    print('Result = %f' % result)
     #time.sleep(np.random.randint(60))
     return result
 
@@ -48,8 +48,8 @@ def objective_function(dropout,optimizer,batch_size):
 
 # Write a function like this called 'main'
 def main(job_id, params):
-    print 'Anything printed here will end up in the output directory for job #%d' % job_id
-    print params
+    print('Anything printed here will end up in the output directory for job #%d' % job_id)
+    print(params)
     FORMAT = '%(asctime)-15s. %(message)s'
     logger = logging.basicConfig(filename=opt_config['log_file'], level=logging.INFO, format=FORMAT)
     return optimize(params['dropout'], params['optimizer'], params['batch_size'])

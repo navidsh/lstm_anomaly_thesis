@@ -48,10 +48,10 @@ def train_autoencoder(X_train,Y_train):
     # Launch the graph
     with tf.Session() as sess:
         sess.run(init)
-        print ("number of examples: %d" % (len(X_train)))
-        print (" batch size: %d" % (batch_size))
+        print(("number of examples: %d" % (len(X_train))))
+        print((" batch size: %d" % (batch_size)))
         n_batches = int(len(X_train) / batch_size)
-        print ("num batches: %d" % (n_batches))
+        print(("num batches: %d" % (n_batches)))
 
         for epoch in range(n_epochs):
             # Loop over all batches
@@ -60,8 +60,8 @@ def train_autoencoder(X_train,Y_train):
                 _, c = sess.run([ae.optimizer,ae.loss], feed_dict={ae.input_placeholder: Xi})
             # Display logs per epoch step
             if epoch % display_step == 0:
-                print("Epoch:", '%02d' % (epoch + 1),
-                      "cost=", "{:.9f}".format(c))
+                print(("Epoch:", '%02d' % (epoch + 1),
+                      "cost=", "{:.9f}".format(c)))
 
         print("Optimization Finished!")
 
@@ -88,9 +88,9 @@ def do_gp_regression():
     X_test = encoded_X_test
 
     mean, variance = m.predict(X_test, include_likelihood=True)
-    print m
+    print(m)
     for idx,val in enumerate(mean):
-        print "Prediction: %f    True:%d    Variance:%f"%(float(val),Y_test[idx],float(variance[idx]))
+        print("Prediction: %f    True:%d    Variance:%f"%(float(val),Y_test[idx],float(variance[idx])))
     #print variance
 
 if __name__ == "__main__":

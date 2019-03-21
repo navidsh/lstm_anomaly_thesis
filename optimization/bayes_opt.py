@@ -34,7 +34,7 @@ def stateful_objective_function(params):
     layers = layers_array[int(params[3])]
 
 
-    print("Using HyperParams. dropout:%f, learning_rate:%f, lookback:%d, layers:%s" % (dropout, learning_rate, look_back,layers))
+    print(("Using HyperParams. dropout:%f, learning_rate:%f, lookback:%d, layers:%s" % (dropout, learning_rate, look_back,layers)))
     logging.info("Using HyperParams. dropout:%f, learning_rate:%f, lookback:%d, layers:%s" % (dropout, learning_rate, look_back, layers))
     data_folder = cfg.opt_config['data_folder']
     look_ahead = cfg.multi_step_lstm_config['look_ahead']
@@ -86,7 +86,7 @@ def stateful_objective_function(params):
     #validation_loss = model.evaluate(X_validation2, y_validation2, batch_size=batch_size, verbose=2)
     logging.info("validation loss %f"%(validation_loss))
     print(" ")
-    print(" #######validation loss %f#########" % (validation_loss))
+    print((" #######validation loss %f#########" % (validation_loss)))
     validation_loss_list.append(validation_loss)
     return validation_loss
 
@@ -108,7 +108,7 @@ def multistep_objective_function(params):
     layers = layers_array[int(params[4])]
 
 
-    print("Using HyperParams. dropout:%f, learning_rate:%f, batch_size:%d, lookback:%d, layers:%s" % (dropout, learning_rate, batch_size, look_back,layers))
+    print(("Using HyperParams. dropout:%f, learning_rate:%f, batch_size:%d, lookback:%d, layers:%s" % (dropout, learning_rate, batch_size, look_back,layers)))
     logging.info("Using HyperParams. dropout:%f, learning_rate:%f, batch_size:%d, lookback:%d, layers:%s" % (dropout, learning_rate, batch_size,look_back, layers))
     data_folder = cfg.opt_config['data_folder']
     look_ahead = cfg.multi_step_lstm_config['look_ahead']
@@ -134,7 +134,7 @@ def multistep_objective_function(params):
     #validation_loss = model.evaluate(X_validation2, y_validation2, batch_size=batch_size, verbose=2)
     logging.info("validation loss %f"%(validation_loss))
     print(" ")
-    print(" #######validation loss %f#########" % (validation_loss))
+    print((" #######validation loss %f#########" % (validation_loss)))
     validation_loss_list.append(validation_loss)
     return validation_loss
 
@@ -181,10 +181,10 @@ try:
     logging.info("Min validation loss %f"%min(validation_loss_list))
 
     for i in range(0,len(validation_loss_list)):
-        print "params: %s  loss: %s"%(lstm_bopt.X[i],validation_loss_list[i])
+        print("params: %s  loss: %s"%(lstm_bopt.X[i],validation_loss_list[i]))
     print("==Optimum Hyperparams==")
-    print (lstm_bopt.x_opt)
-    print("Min test loss %f" % min(validation_loss_list))
+    print((lstm_bopt.x_opt))
+    print(("Min test loss %f" % min(validation_loss_list)))
 
     if cfg.opt_config['save_figure']:
         path = "imgs/%s/"%(opt_id)

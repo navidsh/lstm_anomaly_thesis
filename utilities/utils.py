@@ -33,14 +33,14 @@ def standardize(data):
     data = scaler.fit_transform(data)
 #     print "Scaler Mean: %f" % (scaler.mean_)
 #     print "Scaler Variance: %f" % (scaler.var_)
-    print "data mean %f, data variance %f"%(np.mean(data),np.var(data))
+    print("data mean %f, data variance %f"%(np.mean(data),np.var(data)))
     return data,scaler
 
 
 def scale_data(data):
     scaler = MinMaxScaler()
     data = scaler.fit_transform(data)
-    print "data mean %f, data variance %f"%(np.mean(data),np.var(data))
+    print("data mean %f, data variance %f"%(np.mean(data),np.var(data)))
     return data,scaler
 
 #format data for lstm, by adding previous "look_back" timesteps
@@ -132,7 +132,7 @@ def get_diagonals(input):
 #     return trainX, trainY, testX, testY, scaler
 
 def fit_gaussian(data,experiment_id,title_string):
-    print "fitting gaussian"
+    print("fitting gaussian")
     plt.figure()
     mu, std = norm.fit(data)
     plt.hist(data, bins=25, normed=True, alpha=0.6, color='g')
@@ -199,7 +199,7 @@ def load_data(data_folder,look_back,look_ahead):
 
 
 if __name__ == "__main__":
-    print 22
+    print(22)
     arr = np.array([[1,2,3,4,5],[2,3,4,5,6],[3,4,5,6,7],[4,5,6,7,8],[5,6,7,8,9],[6,7,8,9,10],[7.1,8.1,9.1,10,11]])
     train_diagonals = get_diagonals(arr)
     # diagonals contains a reading's values calculated at different points in time
@@ -213,4 +213,4 @@ if __name__ == "__main__":
 
         train_diagonals[idx] = np.hstack((diag, np.full(5 - len(diag), diag[0])))
     train_diagonals = np.asarray(train_diagonals)
-    print train_diagonals
+    print(train_diagonals)
