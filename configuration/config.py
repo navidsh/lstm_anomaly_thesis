@@ -1,8 +1,9 @@
 
 run_config = { 'Xserver' : True,
                'log_file' : 'logs/run.log',
-               'experiment_id' : "nab_jun22_overfitting",
-               'data_folder': 'resources/data/nab/nab_machine_temperature/',
+               'experiment_id' : "nab_march_26",
+               'data_folder': 'resources/data/nyc-taxi/',
+               #'data_folder': 'resources/data/nab/nab_machine_temperature/',
                #'data_folder': 'resources/data/discords/space_shuttle/',
                #'data_folder': 'resources/data/discords/dutch_power/',
                #'data_folder': 'resources/data/discords/ECG/',
