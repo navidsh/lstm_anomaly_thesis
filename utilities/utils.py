@@ -30,7 +30,7 @@ def prepare_seq2seq_data(dataset, look_back, look_ahead):
 #use returned scaler object to scale test data
 def standardize(data):
     scaler = StandardScaler()
-    data = scaler.fit_transform(data)
+    data = scaler.fit_transform(data.reshape(-1, 1))
 #     print "Scaler Mean: %f" % (scaler.mean_)
 #     print "Scaler Variance: %f" % (scaler.var_)
     print("data mean %f, data variance %f"%(np.mean(data),np.var(data)))
@@ -182,11 +182,11 @@ def load_data(data_folder,look_back,look_ahead):
 
     # standardize data. use the training set mean and variance to transform rewst of the sets
     train, train_scaler = standardize(train[:, 0])
-    validation1 = train_scaler.transform(validation1[:, 0])
+    validation1 = train_scaler.transform(validation1[:, 0].reshape(-1, 1))
     validation2_labels = validation2[:, 1]
-    validation2 = train_scaler.transform(validation2[:, 0])
+    validation2 = train_scaler.transform(validation2[:, 0].reshape(-1, 1))
     test_labels = test[:, 1]
-    test = train_scaler.transform(test[:, 0])
+    test = train_scaler.transform(test[:, 0].reshape(-1, 1))
 
     # prepare sequence data and labels
     X_train, y_train = prepare_seq2seq_data(train, look_back, look_ahead)
